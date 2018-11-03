@@ -18,7 +18,6 @@ import {
 
 // Init Firebase
 const firebaseConfig = {
-
   apiKey: "",
   authDomain: "",
   databaseURL: "",
