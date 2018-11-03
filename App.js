@@ -1,37 +1,23 @@
-import React, { Component } from 'react';
-import * as firebase from 'firebase'
-import {
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native'
+import Login from './Login'
+import ChatList from './ChatList'
 
-// Init Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyDtJxu-PAdSB5ahIY66eI0ziESkllxcJnE",
-  authDomain: "doublespeak-ba592.firebaseapp.com",
-  databaseURL: "https://doublespeak-ba592.firebaseio.com",
-  projectId: "doublespeak-ba592",
-  storageBucket: "doublespeak-ba592.appspot.com",
-}
+import { createStackNavigator } from 'react-navigation'
 
-firebase.initializeApp(firebaseConfig);
-
-export default class App extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    )
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center'
+const navigator = createStackNavigator({
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      title: 'Login',
+      headerLeft: null,
+    }
+  },
+  ChatList: {
+    screen: ChatList,
+    navigationOptions: {
+      title: 'Chat List',
+      headerLeft: null,
+    }
   }
 })
+
+export default navigator
