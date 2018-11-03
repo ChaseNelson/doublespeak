@@ -18,11 +18,11 @@ import {
 
 // Init Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyDtJxu-PAdSB5ahIY66eI0ziESkllxcJnE",
-  authDomain: "doublespeak-ba592.firebaseapp.com",
-  databaseURL: "https://doublespeak-ba592.firebaseio.com",
-  projectId: "doublespeak-ba592",
-  storageBucket: "doublespeak-ba592.appspot.com",
+  apiKey: "",
+  authDomain: "",
+  databaseURL: "",
+  projectId: "",
+  storageBucket: "",
 }
 
 firebase.initializeApp(firebaseConfig);
