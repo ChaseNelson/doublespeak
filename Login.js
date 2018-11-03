@@ -40,35 +40,33 @@ export default class App extends Component {
   }
 
   signUpUser = (email, password) => {
-    try {
-      if (password.length < 6) {
-        alert('Password must be at least 6 characters!')
-        return
-      }
-      firebase.auth().createUserWithEmailAndPassword(email.trim(), password)
-      this.loginUser(email, password)
-    } catch(err) {
-      console.error(err)
+    if (password.length < 6) {
+      alert('Password must be at least 6 characters!')
+      return
+    } else if (email.length < 7) {
+      alert('Email and Password cannot be empty!')
+      return
     }
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+    .catch(err => {
+      alert(err.message)
+    })
+    this.loginUser(email, password)
   }
 
   loginUser = (email, password) => {
-    try {
-      if (email.length === 0 || password.length === 0) {
-        alert('Email and Password cannot be left blank.')
-        return
-      }
-      firebase.auth().signInWithEmailAndPassword(email.trim(), password)
-      .then(user => {
-        this.setState({ currentUser: user.user })
-        this.props.navigation.navigate('ChatList', { currentUser: user.user })
-      })
-      .catch(err => {
-        alert(err.message)
-      })
-    } catch(err) {
-      console.error(err)
+    if (email.length < 7 || password.length < 6) {
+      alert('Email and Password cannot be left blank.')
+      return
     }
+    firebase.auth().signInWithEmailAndPassword(email, password)
+    .then(user => {
+      this.setState({ currentUser: user.user })
+      this.props.navigation.navigate('ChatList', { currentUser: user.user })
+    })
+    .catch(err => {
+      alert(err.message)
+    })
   }
 
   render() {
@@ -100,6 +98,7 @@ export default class App extends Component {
               rounded
               success
               onPress={() => {this.loginUser(this.state.email, this.state.password)}}
+              value={ this.state.password }
             >
               <Text style={{ color: 'white' }}>Login</Text>
             </Button>
