@@ -159,32 +159,33 @@ const hacker = {
 }
 
 const chaser = {
-  "a": '',
-  "b": '',
-  "c": '',
-  "d": '',
-  "e": '',
-  "f": '', 
-  "g": '',
-  "h": '',
-  "i": '',
-  "j": '',
-  "k": '',
-  "l": '',
-  "m": '',
-  "n": '',
-  "o": 'U+1CC2',
-  "p": '',
-  "q": '',
-  "r": '',
-  "s": '',
-  "t": '',
-  "u": '',
-  "v": '',
-  "w": '',
-  "x": '',
-  "y": '',
-  "z": '',
+  " ": "  ",
+  "a": '/\\ ',
+  "b": '|} ',
+  "c": '( ',
+  "d": '|] ',
+  "e": '☰ ',
+  "f": '|=' , 
+  "g": ' ',
+  "h": '|-| ',
+  "i": '| ',
+  "j": '_| ',
+  "k": '|< ',
+  "l": '|_ ',
+  "m": '/\\/\\ ',
+  "n": '|\\| ',
+  "o": '\u1CC2 ',
+  "p": '|o ',
+  "q": 'O_ ',
+  "r": '|^ ',
+  "s": '_|‾ ',
+  "t": '‾|‾ ',
+  "u": '|_| ',
+  "v": '\\/ ',
+  "w": '\\/\\/ ',
+  "x": '>< ',
+  "y": '^/ ',
+  "z": '‾/_ ',
 }
 const googleLanguageList = [
   { code: 'af', name: 'Afrikaans' },
@@ -299,6 +300,7 @@ const languages = {
   morseCode,
   kristaCode,
   hacker,
+  chaser,
   googleLanguageList
 }
 
@@ -320,7 +322,7 @@ function translate(text, language) {
 }
 
 const testText = 'The quick brown fox jumps over the lazy dog.'
-const testLanguage = languages['hacker']
+const testLanguage = languages['chaser']
 
 console.log(`Text: ${testText}`)
 console.log(`Translation: ${translate(testText, testLanguage)}`)
