@@ -3,17 +3,6 @@ import * as firebase from 'firebase';
 import { StyleSheet, Text } from 'react-native';
 import { Container, Content, Header, Form, Input, Item, Button, Label } from 'native-base';
 
-// Init Firebase
-const firebaseConfig = {
-  apiKey: '',
-  authDomain: '',
-  databaseURL: '',
-  projectId: '',
-  storageBucket: '',
-};
-
-firebase.initializeApp(firebaseConfig);
-
 export default class App extends Component {
   constructor(props) {
     super(props);
