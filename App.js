@@ -42,6 +42,13 @@ const navigator = createStackNavigator(
       headerVisible: false,
     },
   },
+  Chat: {
+    screen: Chat,
+    navigationOptions: {
+      title: 'Chat Room',
+      headerLeft: null,
+    },
+  },
 });
 
 export default navigator;
