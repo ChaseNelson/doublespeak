@@ -26,7 +26,6 @@ export default class Chat extends Component {
         const mess = snapshot.val().messages;
         const messages = [];
         for (const key in mess) {
-          alert(`mess[key] : ${JSON.stringify(mess[key])}`);
           const temp = {
             _id: 1,
             text: mess[key].text,
