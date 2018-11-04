@@ -2,6 +2,7 @@ import { createStackNavigator } from 'react-navigation';
 import * as firebase from 'firebase';
 import Login from './Login';
 import ChatList from './ChatList';
+import Chat from './Chat';
 
 // Init Firebase
 const firebaseConfig = {
@@ -29,12 +30,25 @@ const navigator = createStackNavigator(
       },
     },
   },
+  Chat: {
+    screen: Chat,
+    navigationOptions: {
+      headerVisible: false
+    },
+  },
   {
     headerMode: 'none',
     navigationOptions: {
       headerVisible: false,
     },
-  }
-);
+  },
+  Chat: {
+    screen: Chat,
+    navigationOptions: {
+      title: 'Chat Room',
+      headerLeft: null,
+    },
+  },
+});
 
 export default navigator;
