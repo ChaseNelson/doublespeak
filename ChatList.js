@@ -26,7 +26,7 @@ export default class ChatList extends Component {
           this.setState({ rooms: snapshot.val() });
         },
         err => {
-          alert(err.messages);
+          alert(err.message);
         }
       );
   };
@@ -50,12 +50,16 @@ export default class ChatList extends Component {
         .set({
           messages: {
             [new Date().getTime()]: {
+              timestamp: new Date().getTime(),
               text: `${
                 currentUser.displayName ? currentUser.displayName : currentUser.email
               } created room ${roomName}.`,
+              sentBy: { uid: 'SYSTEM', name: 'SYSTEM' },
             },
           },
-          userlist: [this.state.uid],
+        })
+        .then(() => {
+          this.gotoRoom(roomName);
         })
         .catch(err => alert(err.message));
     } else {
@@ -77,39 +81,33 @@ export default class ChatList extends Component {
       }
     }
     if (contains) {
-      let alreadyInRoom = false;
-      const roomRef = firebase.database().ref(`Rooms/${roomName}`);
-      roomRef
-        .child('userlist')
-        .once('value')
-        .then(data => {
-          alert(JSON.stringify(data));
-          Object.keys(data).forEach(key => {
-            if (key === this.state.uid || data[key] === this.state.uid) {
-              alert('You are alreay in that room');
-              alreadyInRoom = true;
-            }
-          });
-          if (alreadyInRoom) return;
-
-          // if not on list add to list
-          roomRef.child('userlist').push(currentUser.uid);
-
-          // added a new message to the room
-          roomRef.child('messages').update({
-            [new Date().getTime()]: {
-              text: `${
-                currentUser.displayName ? currentUser.displayName : currentUser.email
-              } joined room ${roomName}.`,
-            },
-          });
-        })
-        .catch(err => {
-          alert(err.message);
-        });
+      const { currentUser } = this.state;
+      // firebase
+      //   .database()
+      //   .ref(`Rooms/${roomName}/messages/${new Date().getTime()}`)
+      //   .set({
+      //     timestamp: new Date().getTime(),
+      //     text: `${
+      //       currentUser.displayName ? currentUser.displayName : currentUser.email
+      //     } created room ${roomName}.`,
+      //     sentBy: { uid: 'SYSTEM', name: 'SYSTEM' },
+      //   })
+      //   .then(() => {
+      //     this.gotoRoom(roomName);
+      //   })
+      //   .catch(err => alert(err.message));
+      this.gotoRoom(roomName);
     } else {
       alert('Room does not exist.');
     }
+  };
+
+  gotoRoom = roomName => {
+    this.props.navigation.navigate('Chat', {
+      currentUser: this.state.currentUser,
+      uid: this.state.uid,
+      roomName,
+    });
   };
 
   render() {
