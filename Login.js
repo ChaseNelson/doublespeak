@@ -53,8 +53,8 @@ export default class App extends Component {
     return (
       <Container style={styles.container}>
         <Form>
-          <Text style={styles.darkDarkFont}>doublespace</Text>
-          <Text style={styles.grayFont}>doublespace</Text>
+          <Text style={styles.lightlightFont}>doublespeak</Text>
+          <Text style={styles.grayFont}>doublespeak</Text>
           <Item floatingLabel>
             <Label>Email</Label>
             <Input
@@ -62,6 +62,7 @@ export default class App extends Component {
               autoCapitalize="none"
               onChangeText={email => this.setState({ email: email.replace(/\s/g, '') })}
               value={this.state.email}
+              style={styles.input}
             />
           </Item>
           <Item floatingLabel>
@@ -71,6 +72,7 @@ export default class App extends Component {
               autoCorrect={false}
               autoCapitalize="none"
               onChangeText={password => this.setState({ password })}
+              style={styles.input}
             />
           </Item>
           <Button
@@ -105,29 +107,33 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F4E0CC',
+    backgroundColor: '#0C0823',
     justifyContent: 'center',
     padding: 15,
   },
   loginButton: {
     marginTop: 30,
-    backgroundColor: '#1AE572',
+    backgroundColor: '#053E2C',
   },
   signUpButton: {
     marginTop: 20,
-    backgroundColor: '#13AAE1',
+    backgroundColor: '#082B50',
   },
-  darkDarkFont: {
-    color: '#040839',
+  lightlightFont: {
+    color: '#FFFFFF',
     fontWeight: 'bold',
     fontSize: 30,
     fontFamily: 'Courier New',
   },
   grayFont: {
-    color: '#363856',
+    color: '#B0AFB9',
     fontWeight: 'bold',
     fontSize: 30,
     fontFamily: 'Courier New',
     transform: [{ rotate: '180deg' }],
+  },
+  input: {
+    color: '#EEE',
+    fontFamily: 'Courier New',
   },
 });

@@ -117,9 +117,9 @@ export default class ChatList extends Component {
       <Container style={styles.container}>
         <Content padder>
           <Card>
-            <CardItem header bordered>
+            <CardItem header bordered style={styles.card}>
               <Item floatingLabel>
-                <Label>Create a Room</Label>
+                <Label style={styles.input}>Create a Room</Label>
                 <Input
                   autoCorrect={false}
                   autoCapitalize="none"
@@ -137,19 +137,20 @@ export default class ChatList extends Component {
                   this.createNewRoom(this.state.createRoomName);
                 }}
               >
-                <Text style={{ color: 'white' }}>Create</Text>
+                <Text style={{ color: 'white', fontFamily: 'Courier New' }}>Create</Text>
               </Button>
             </CardItem>
           </Card>
           <Card>
-            <CardItem header bordered>
+            <CardItem header bordered style={styles.card}>
               <Item floatingLabel>
-                <Label>Join a Room</Label>
+                <Label style={styles.input}>Join a Room</Label>
                 <Input
                   autoCorrect={false}
                   autoCapitalize="none"
                   onChangeText={joinRoomName => this.setState({ joinRoomName })}
                   value={this.state.joinRoomName}
+                  style={styles.input}
                 />
               </Item>
             </CardItem>
@@ -162,7 +163,7 @@ export default class ChatList extends Component {
                   this.joinNewRoom(this.state.joinRoomName);
                 }}
               >
-                <Text style={{ color: 'white' }}>Join</Text>
+                <Text style={{ color: 'white', fontFamily: 'Courier New' }}>Join</Text>
               </Button>
             </CardItem>
           </Card>
@@ -193,11 +194,21 @@ export default class ChatList extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#0C0823',
     justifyContent: 'center',
     padding: 15,
   },
   createButton: {
     marginTop: 20,
+    padding: 10,
+    backgroundColor: '#053E2C',
+  },
+  card: {
+    backgroundColor: '#0F539B',
+    fontFamily: 'Courier New',
+  },
+  input: {
+    color: '#EEE',
+    fontFamily: 'Courier New',
   },
 });
