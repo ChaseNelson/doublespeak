@@ -77,20 +77,23 @@ export default class ChatList extends Component {
       }
     }
     if (contains) {
+      let alreadyInRoom = false;
       const roomRef = firebase.database().ref(`Rooms/${roomName}`);
       roomRef
         .child('userlist')
         .once('value')
         .then(data => {
-          for (const key in data) {
-            if (data[key] === this.state.uid) {
+          alert(JSON.stringify(data));
+          Object.keys(data).forEach(key => {
+            if (key === this.state.uid || data[key] === this.state.uid) {
               alert('You are alreay in that room');
-              return;
+              alreadyInRoom = true;
             }
-          }
+          });
+          if (alreadyInRoom) return;
 
           // if not on list add to list
-          roomRef.push(currentUser.uid);
+          roomRef.child('userlist').push(currentUser.uid);
 
           // added a new message to the room
           roomRef.child('messages').update({
