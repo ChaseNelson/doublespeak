@@ -14,21 +14,27 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
-const navigator = createStackNavigator({
-  Login: {
-    screen: Login,
-    navigationOptions: {
-      title: 'Login',
-      headerLeft: null,
+const navigator = createStackNavigator(
+  {
+    Login: {
+      screen: Login,
+      navigationOptions: {
+        headerVisible: false,
+      },
+    },
+    ChatList: {
+      screen: ChatList,
+      navigationOptions: {
+        headerVisible: false,
+      },
     },
   },
-  ChatList: {
-    screen: ChatList,
+  {
+    headerMode: 'none',
     navigationOptions: {
-      title: 'Chat List',
-      headerLeft: null,
+      headerVisible: false,
     },
-  },
-});
+  }
+);
 
 export default navigator;
