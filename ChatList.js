@@ -17,7 +17,18 @@ export default class ChatList extends Component {
   }
 
   componentDidMount = () => {
-    this.getRooms();
+    firebase
+      .database()
+      .ref('Rooms')
+      .on(
+        'value',
+        snapshot => {
+          this.setState({ rooms: snapshot.val() });
+        },
+        err => {
+          alert(err.messages);
+        }
+      );
   };
 
   createNewRoom = roomName => {
@@ -96,20 +107,6 @@ export default class ChatList extends Component {
     } else {
       alert('Room does not exist.');
     }
-  };
-
-  getRooms = () => {
-    const roomsRef = firebase.database().ref('Rooms');
-    roomsRef
-      .once('value')
-      .then(data => {
-        const val = data.val();
-        this.setState({ rooms: val });
-        return val;
-      })
-      .catch(err => {
-        alert(err.message);
-      });
   };
 
   render() {
