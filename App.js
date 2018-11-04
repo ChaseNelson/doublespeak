@@ -1,21 +1,23 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import Login from './Login'
+import ChatList from './ChatList'
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
-}
+import { createStackNavigator } from 'react-navigation'
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+const navigator = createStackNavigator({
+  Login: {
+    screen: Login,
+    navigationOptions: {
+      title: 'Login',
+      headerLeft: null,
+    }
   },
-});
+  ChatList: {
+    screen: ChatList,
+    navigationOptions: {
+      title: 'Chat List',
+      headerLeft: null,
+    }
+  }
+})
+
+export default navigator
