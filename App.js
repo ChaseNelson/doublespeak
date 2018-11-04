@@ -1,21 +1,54 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { createStackNavigator } from 'react-navigation';
+import * as firebase from 'firebase';
+import Login from './Login';
+import ChatList from './ChatList';
+import Chat from './Chat';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
-}
+// Init Firebase
+const firebaseConfig = {
+  apiKey: '',
+  authDomain: '',
+  databaseURL: '',
+  projectId: '',
+  storageBucket: '',
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+firebase.initializeApp(firebaseConfig);
+
+const navigator = createStackNavigator(
+  {
+    Login: {
+      screen: Login,
+      navigationOptions: {
+        headerVisible: false,
+      },
+    },
+    ChatList: {
+      screen: ChatList,
+      navigationOptions: {
+        headerVisible: false,
+      },
+    },
+  },
+  Chat: {
+    screen: Chat,
+    navigationOptions: {
+      headerVisible: false
+    },
+  },
+  {
+    headerMode: 'none',
+    navigationOptions: {
+      headerVisible: false,
+    },
+  },
+  Chat: {
+    screen: Chat,
+    navigationOptions: {
+      title: 'Chat Room',
+      headerLeft: null,
+    },
   },
 });
+
+export default navigator;
